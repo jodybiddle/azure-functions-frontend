@@ -261,11 +261,9 @@ export default function EmployeesForProject() {
         )}
         
         <div className="flex justify-end mt-4">
-          {Array.isArray(data) && data.length > 0 && (
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold shadow transition-colors" onClick={() => setIsAddEmployeeModalOpen(true)}>
-              Add Employee To Project
-            </button>
-          )}
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold shadow transition-colors" onClick={() => setIsAddEmployeeModalOpen(true)}>
+            Add Employee To Project
+          </button>
           {createEmployeeMutation.isPending && <span className="ml-4 text-blue-600">Adding...</span>}
           {createEmployeeMutation.isError && <span className="ml-4 text-red-600">Error: {(createEmployeeMutation.error as Error)?.message}</span>}
         </div>
