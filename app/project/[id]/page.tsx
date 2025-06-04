@@ -210,7 +210,7 @@ export default function EmployeesForProject() {
         <div className="flex flex-col gap-4 mb-6">
           {project && <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{`Project: ${project.name}`}</h1>}
           <h2 className="text-xl font-semibold text-neutral-700 dark:text-neutral-200">List of employees assigned to this project</h2>
-          {isLoading && <p className="text-gray-400 text-sm">Loading... Might take a second for the database to spin up (cold starts are real)...</p>}
+          {isLoading && <p className="text-gray-400 text-sm">Loading... Might take a second for the database to spin up (cold starts are real on the Azure Free Tier)...</p>}
           {error && <p className="text-red-600">Error: {error.message}</p>}
         </div>
         {Array.isArray(data) && data.length > 0 && (
