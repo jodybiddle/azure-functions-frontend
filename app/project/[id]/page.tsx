@@ -210,7 +210,7 @@ export default function EmployeesForProject() {
         <div className="flex flex-col gap-4 mb-6">
           {project && <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{`Project: ${project.name}`}</h1>}
           <h2 className="text-xl font-semibold text-neutral-700 dark:text-neutral-200">List of employees assigned to this project</h2>
-          {isLoading && <p className="text-blue-600">Loading... Might take a second for the database to spin up...</p>}
+          {isLoading && <p className="text-gray-400 text-sm">Loading... Might take a second for the database to spin up (cold starts are real)...</p>}
           {error && <p className="text-red-600">Error: {error.message}</p>}
         </div>
         {Array.isArray(data) && data.length > 0 && (
@@ -259,13 +259,17 @@ export default function EmployeesForProject() {
             <p className="text-lg text-gray-400">No employees found for this project.</p>
           </div>
         )}
+        
         <div className="flex justify-end mt-4">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold shadow transition-colors" onClick={() => setIsAddEmployeeModalOpen(true)}>
-            Add Employee To Project
-          </button>
+          {Array.isArray(data) && data.length > 0 && (
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold shadow transition-colors" onClick={() => setIsAddEmployeeModalOpen(true)}>
+              Add Employee To Project
+            </button>
+          )}
           {createEmployeeMutation.isPending && <span className="ml-4 text-blue-600">Adding...</span>}
           {createEmployeeMutation.isError && <span className="ml-4 text-red-600">Error: {(createEmployeeMutation.error as Error)?.message}</span>}
         </div>
+        
         <AddEmployeeModal open={isAddEmployeeModalOpen} jobId={id as string} onClose={() => setIsAddEmployeeModalOpen(false)} onSubmit={handleAddEmployee} />
         {isDeleteConfirmOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">

@@ -118,7 +118,7 @@ export default function Home() {
       <div className="w-full max-w-4xl bg-white dark:bg-neutral-900 rounded-xl shadow-lg p-8">
         <div className="flex flex-col gap-4 mb-6">
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Project List</h1>
-          {isLoading && <p className="text-blue-600">Loading... Might take a second for the database to spin up...</p>}
+          {isLoading && <p className="text-gray-400 text-sm">Loading... Might take a second for the database to spin up (cold starts are real)...</p>}
           {error && <p className="text-red-600">Error: {error.message}</p>}
         </div>
         {Array.isArray(data) && data.length > 0 && (
@@ -179,12 +179,14 @@ export default function Home() {
             <p className="text-lg text-gray-400">No jobs found.</p>
           </div>
         )}
+        {Array.isArray(data) && data.length > 0 && (
         <div className="flex justify-end mt-4 items-center gap-4">
           <p className="text-sm text-gray-400">Click project name to view employees assigned to project</p>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold shadow transition-colors" onClick={() => setIsAddJobModalOpen(true)}>
             Add Job
           </button>
         </div>
+        )}
         {createJobMutation.isPending && <span className="ml-4 text-blue-600">Adding...</span>}
         {createJobMutation.isError && <span className="ml-4 text-red-600">Error: {(createJobMutation.error as Error)?.message}</span>}
         <AddJobModal open={isAddJobModalOpen} onClose={() => setIsAddJobModalOpen(false)} onSubmit={handleAddJob} />
