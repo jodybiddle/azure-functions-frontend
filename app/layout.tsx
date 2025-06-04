@@ -28,9 +28,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} mx-auto max-w-4xl`}
       >
         <QueryClientProvider client={queryClient}>
-          <header className="flex gap-6 items-center bg-neutral-900 border-b border-neutral-800 py-4 px-8 shadow-md mb-6">
-            <Link href="/" className="text-white font-semibold hover:text-blue-400 transition-colors">Projects</Link>
-            <Link href="/employees" className="text-white font-semibold hover:text-blue-400 transition-colors">Employees</Link>
+          <header className="flex justify-between gap-6 items-center bg-neutral-900 border-b border-neutral-800 py-4 px-8 shadow-md mb-6">
+          <h1 className="text-white font-semibold text-2xl">Project Management App</h1>
+            <div className="flex items-center gap-4">
+              <Link href="/" className="text-white font-semibold hover:text-blue-400 transition-colors">Projects</Link>
+              <Link href="/employees" className="text-white font-semibold hover:text-blue-400 transition-colors">Employees</Link>
+            </div>
           </header>
           {children}
         </QueryClientProvider>
