@@ -5,6 +5,7 @@ import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,12 @@ export default function RootLayout({
       >
         <QueryClientProvider client={queryClient}>
           <header className="flex justify-between gap-6 items-center bg-neutral-900 border-b border-neutral-800 py-4 px-8 shadow-md mb-6">
-          <h1 className="text-white font-semibold text-2xl">Project Management App</h1>
+            <div className="flex items-center gap-2">
+              <div className="size-10">
+                <Image src="/icon.png" alt="logo" width={100} height={100} />
+              </div>
+              <h1 className="text-white font-semibold text-2xl">Project Management App</h1>
+            </div>
             <div className="flex items-center gap-4">
               <Link href="/" className="text-white font-semibold hover:text-blue-400 transition-colors">Projects</Link>
               <Link href="/employees" className="text-white font-semibold hover:text-blue-400 transition-colors">Employees</Link>
